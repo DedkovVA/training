@@ -124,4 +124,59 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(9) shouldBe Seq(10, 10, 10)
     g.isFinished shouldBe true
   }
+
+  "looser" in {
+    val g = new Game(5)
+
+    g.rollInd shouldBe -1
+    g.frameInd shouldBe 0
+    g.frameToPins.isEmpty shouldBe true
+    g.isFinished shouldBe false
+
+    g.roll(0)
+    g.rollInd shouldBe 0
+    g.frameInd shouldBe 0
+    g.frameToPins(0) shouldBe Seq(0)
+
+    g.roll(0)
+    g.rollInd shouldBe 1
+    g.frameInd shouldBe 0
+    g.frameToPins(0) shouldBe Seq(0, 0)
+
+    g.roll(0)
+    g.rollInd shouldBe 2
+    g.frameInd shouldBe 1
+    g.frameToPins(0) shouldBe Seq(0, 0)
+    g.frameToPins(1) shouldBe Seq(0)
+
+    g.roll(0)
+    g.rollInd shouldBe 3
+    g.frameInd shouldBe 1
+    g.frameToPins(0) shouldBe Seq(0, 0)
+    g.frameToPins(1) shouldBe Seq(0, 0)
+  }
+
+  "looser in loop" in {
+    val g = new Game
+    Range(0, 19).indices.foreach {i  =>
+      g.roll(0)
+
+      val n = i / 2
+
+      g.rollInd shouldBe i
+      g.frameInd shouldBe n
+      if (i % 2 == 0) {
+        g.frameToPins(n) shouldBe Seq(0)
+      } else {
+        g.frameToPins(n) shouldBe Seq(0, 0)
+      }
+      g.isFinished shouldBe false
+    }
+
+    g.roll(0)
+    g.rollInd shouldBe 19
+    g.frameInd shouldBe 9
+    g.frameToPins(9) shouldBe Seq(0, 0)
+    g.isFinished shouldBe true
+  }
 }
