@@ -13,8 +13,6 @@ class Game(val lastFrameInd: Int = 9) {
   var frameToPins = Map.empty[FrameInd, Seq[Score]]
   var isFinished = false
 
-  var scoreN = 0
-
   def roll(pins: Int): Unit = {
     require(pins >= 0 && pins <= 10)
 
@@ -54,12 +52,31 @@ class Game(val lastFrameInd: Int = 9) {
     }
   }
 
+  private def isSpare(seq: Seq[Score]): Boolean = seq.size == maxNumOfTries && seq.sum == maxPins
+  private def isStrike(seq: Seq[Score]): Boolean = seq.size == 1 && seq.sum == maxPins
+
   def score(): Int = {
     assert(isFinished)
 
+    var scoreN = 0
+    var ind = 0
 
+    val tries = frameToPins.toSeq.flatMap(_._2)
 
-    0
+    frameToPins.toSeq.sortBy(_._1).foreach { case (_, scores) =>
+      if (isStrike(scores)) {
+        scoreN += (tries(ind + 1) + tries(ind + 2) + maxPins)
+        ind += 1
+      } else if (isSpare(scores)) {
+        scoreN += (tries(ind + 2) + maxPins)
+        ind += 2
+      } else {
+        scoreN += (tries(ind) + tries(ind + 1))
+        ind += 2
+      }
+    }
+
+    scoreN
   }
 
   private def updateFrameToPins(pins: Int): Unit = {

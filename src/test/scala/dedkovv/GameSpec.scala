@@ -178,6 +178,8 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameInd shouldBe 9
     g.frameToPins(9) shouldBe Seq(0, 0)
     g.isFinished shouldBe true
+
+    g.score() shouldBe 0
   }
 
   "spare at the end" in {
