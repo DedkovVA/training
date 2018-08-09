@@ -9,6 +9,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.rollInd shouldBe -1
     g.frameInd shouldBe 0
     g.frameToPins.isEmpty shouldBe true
+    g.isFinished shouldBe false
 
     g.roll(3)
     g.rollInd shouldBe 0
@@ -64,5 +65,63 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(2) shouldBe Seq(10)
     g.frameToPins(3) shouldBe Seq(10)
     g.frameToPins(4) shouldBe Seq(1, 0)
+
+    g.roll(10)
+    g.rollInd shouldBe 8
+    g.frameInd shouldBe 5
+    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.frameToPins(1) shouldBe Seq(2, 8)
+    g.frameToPins(2) shouldBe Seq(10)
+    g.frameToPins(3) shouldBe Seq(10)
+    g.frameToPins(4) shouldBe Seq(1, 0)
+    g.frameToPins(5) shouldBe Seq(10)
+
+    g.roll(10)
+    g.rollInd shouldBe 9
+    g.frameInd shouldBe 5
+    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.frameToPins(1) shouldBe Seq(2, 8)
+    g.frameToPins(2) shouldBe Seq(10)
+    g.frameToPins(3) shouldBe Seq(10)
+    g.frameToPins(4) shouldBe Seq(1, 0)
+    g.frameToPins(5) shouldBe Seq(10, 10)
+
+    g.isFinished shouldBe false
+
+    g.roll(10)
+    g.rollInd shouldBe 10
+    g.frameInd shouldBe 5
+    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.frameToPins(1) shouldBe Seq(2, 8)
+    g.frameToPins(2) shouldBe Seq(10)
+    g.frameToPins(3) shouldBe Seq(10)
+    g.frameToPins(4) shouldBe Seq(1, 0)
+    g.frameToPins(5) shouldBe Seq(10, 10, 10)
+
+    g.isFinished shouldBe true
+  }
+
+  "max 12 tries" in {
+    val g = new Game
+    Range(0, 10).indices.foreach {i  =>
+      g.roll(10)
+
+      g.rollInd shouldBe i
+      g.frameInd shouldBe i
+      g.frameToPins(i) shouldBe Seq(10)
+      g.isFinished shouldBe false
+    }
+
+    g.roll(10)
+    g.rollInd shouldBe 10
+    g.frameInd shouldBe 9
+    g.frameToPins(9) shouldBe Seq(10, 10)
+    g.isFinished shouldBe false
+
+    g.roll(10)
+    g.rollInd shouldBe 11
+    g.frameInd shouldBe 9
+    g.frameToPins(9) shouldBe Seq(10, 10, 10)
+    g.isFinished shouldBe true
   }
 }
