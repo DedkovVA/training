@@ -30,16 +30,12 @@ class Game(val lastFrameInd: Int = 9) {
       val scoresPerFrame = scoresPerFrameSeq.sum
 
       if (frameInd == lastFrameInd) {
-        val rem = remainder(scoresPerFrameSeq)
-
-        assert(rem == 0 || pins <= rem)
-
         frameToPins += (frameInd -> (scoresPerFrameSeq :+ pins))
       } else if (scoresPerFrame == maxPins || scoresPerFrameSeq.size == maxNumOfTries) {
         frameInd += 1
         updateFrameToPins(pins)
       } else {
-        val rem = remainder(scoresPerFrameSeq)
+        val rem = maxPins - scoresPerFrameSeq.last
 
         assert(pins <= rem)
 
@@ -58,16 +54,17 @@ class Game(val lastFrameInd: Int = 9) {
     }
   }
 
-  def score(): Int = ???
+  def score(): Int = {
+    assert(isFinished)
+
+
+
+    0
+  }
 
   private def updateFrameToPins(pins: Int): Unit = {
     frameToPins += (frameInd -> List(pins))
   }
-
-  private def remainder(scoresPerFrameSeq: Seq[Int]): Int = {
-    maxPins - scoresPerFrameSeq.last
-  }
-
 }
 
 object Game extends App {

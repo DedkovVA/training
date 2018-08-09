@@ -179,4 +179,76 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(9) shouldBe Seq(0, 0)
     g.isFinished shouldBe true
   }
+
+  "spare at the end" in {
+    val g = new Game(1)
+
+    g.rollInd shouldBe -1
+    g.frameInd shouldBe 0
+    g.frameToPins.isEmpty shouldBe true
+    g.isFinished shouldBe false
+
+    g.roll(3)
+    g.rollInd shouldBe 0
+    g.frameInd shouldBe 0
+    g.frameToPins(0) shouldBe Seq(3)
+
+    g.roll(4)
+    g.rollInd shouldBe 1
+    g.frameInd shouldBe 0
+    g.frameToPins(0) shouldBe Seq(3, 4)
+
+    g.roll(2)
+    g.rollInd shouldBe 2
+    g.frameInd shouldBe 1
+    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.frameToPins(1) shouldBe Seq(2)
+
+    g.roll(8)
+    g.rollInd shouldBe 3
+    g.frameInd shouldBe 1
+    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.frameToPins(1) shouldBe Seq(2, 8)
+
+    g.roll(10)
+    g.rollInd shouldBe 4
+    g.frameInd shouldBe 1
+    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.frameToPins(1) shouldBe Seq(2, 8, 10)
+
+    g.isFinished shouldBe true
+  }
+
+  "fail at the end" in {
+    val g = new Game(1)
+
+    g.rollInd shouldBe -1
+    g.frameInd shouldBe 0
+    g.frameToPins.isEmpty shouldBe true
+    g.isFinished shouldBe false
+
+    g.roll(3)
+    g.rollInd shouldBe 0
+    g.frameInd shouldBe 0
+    g.frameToPins(0) shouldBe Seq(3)
+
+    g.roll(4)
+    g.rollInd shouldBe 1
+    g.frameInd shouldBe 0
+    g.frameToPins(0) shouldBe Seq(3, 4)
+
+    g.roll(2)
+    g.rollInd shouldBe 2
+    g.frameInd shouldBe 1
+    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.frameToPins(1) shouldBe Seq(2)
+
+    g.roll(7)
+    g.rollInd shouldBe 3
+    g.frameInd shouldBe 1
+    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.frameToPins(1) shouldBe Seq(2, 7)
+
+    g.isFinished shouldBe true
+  }
 }
