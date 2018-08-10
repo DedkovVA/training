@@ -6,103 +6,103 @@ class GameSpec extends FreeSpec with Matchers {
   "first" in {
     val g = new Game(5)
 
-    g.rollInd shouldBe -1
-    g.frameInd shouldBe 0
-    g.frameToPins.isEmpty shouldBe true
+    g.getRollInd shouldBe -1
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins.isEmpty shouldBe true
     g.isFinished shouldBe false
 
     g.roll(3)
-    g.rollInd shouldBe 0
-    g.frameInd shouldBe 0
-    g.frameToPins(0) shouldBe Seq(3)
+    g.getRollInd shouldBe 0
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins(0) shouldBe Seq(3)
 
     g.roll(4)
-    g.rollInd shouldBe 1
-    g.frameInd shouldBe 0
-    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.getRollInd shouldBe 1
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
     //7 in frame 0
 
     g.roll(2)
-    g.rollInd shouldBe 2
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2)
+    g.getRollInd shouldBe 2
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2)
 
     g.roll(8)
-    g.rollInd shouldBe 3
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
+    g.getRollInd shouldBe 3
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
     //20 in frame 1
 
     g.roll(10)
-    g.rollInd shouldBe 4
-    g.frameInd shouldBe 2
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
-    g.frameToPins(2) shouldBe Seq(10)
+    g.getRollInd shouldBe 4
+    g.getFrameInd shouldBe 2
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
+    g.getFrameToPins(2) shouldBe Seq(10)
     //21 in frame 2
 
     g.roll(10)
-    g.rollInd shouldBe 5
-    g.frameInd shouldBe 3
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
-    g.frameToPins(2) shouldBe Seq(10)
-    g.frameToPins(3) shouldBe Seq(10)
+    g.getRollInd shouldBe 5
+    g.getFrameInd shouldBe 3
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
+    g.getFrameToPins(2) shouldBe Seq(10)
+    g.getFrameToPins(3) shouldBe Seq(10)
     //11 in frame 3
 
     g.roll(1)
-    g.rollInd shouldBe 6
-    g.frameInd shouldBe 4
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
-    g.frameToPins(2) shouldBe Seq(10)
-    g.frameToPins(3) shouldBe Seq(10)
-    g.frameToPins(4) shouldBe Seq(1)
+    g.getRollInd shouldBe 6
+    g.getFrameInd shouldBe 4
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
+    g.getFrameToPins(2) shouldBe Seq(10)
+    g.getFrameToPins(3) shouldBe Seq(10)
+    g.getFrameToPins(4) shouldBe Seq(1)
 
     g.roll(0)
-    g.rollInd shouldBe 7
-    g.frameInd shouldBe 4
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
-    g.frameToPins(2) shouldBe Seq(10)
-    g.frameToPins(3) shouldBe Seq(10)
-    g.frameToPins(4) shouldBe Seq(1, 0)
+    g.getRollInd shouldBe 7
+    g.getFrameInd shouldBe 4
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
+    g.getFrameToPins(2) shouldBe Seq(10)
+    g.getFrameToPins(3) shouldBe Seq(10)
+    g.getFrameToPins(4) shouldBe Seq(1, 0)
     //1 in frame 4
 
     g.roll(10)
-    g.rollInd shouldBe 8
-    g.frameInd shouldBe 5
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
-    g.frameToPins(2) shouldBe Seq(10)
-    g.frameToPins(3) shouldBe Seq(10)
-    g.frameToPins(4) shouldBe Seq(1, 0)
-    g.frameToPins(5) shouldBe Seq(10)
+    g.getRollInd shouldBe 8
+    g.getFrameInd shouldBe 5
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
+    g.getFrameToPins(2) shouldBe Seq(10)
+    g.getFrameToPins(3) shouldBe Seq(10)
+    g.getFrameToPins(4) shouldBe Seq(1, 0)
+    g.getFrameToPins(5) shouldBe Seq(10)
     //30 in frame 5
 
     g.roll(10)
-    g.rollInd shouldBe 9
-    g.frameInd shouldBe 5
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
-    g.frameToPins(2) shouldBe Seq(10)
-    g.frameToPins(3) shouldBe Seq(10)
-    g.frameToPins(4) shouldBe Seq(1, 0)
-    g.frameToPins(5) shouldBe Seq(10, 10)
+    g.getRollInd shouldBe 9
+    g.getFrameInd shouldBe 5
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
+    g.getFrameToPins(2) shouldBe Seq(10)
+    g.getFrameToPins(3) shouldBe Seq(10)
+    g.getFrameToPins(4) shouldBe Seq(1, 0)
+    g.getFrameToPins(5) shouldBe Seq(10, 10)
 
     g.isFinished shouldBe false
 
     g.roll(10)
-    g.rollInd shouldBe 10
-    g.frameInd shouldBe 5
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
-    g.frameToPins(2) shouldBe Seq(10)
-    g.frameToPins(3) shouldBe Seq(10)
-    g.frameToPins(4) shouldBe Seq(1, 0)
-    g.frameToPins(5) shouldBe Seq(10, 10, 10)
+    g.getRollInd shouldBe 10
+    g.getFrameInd shouldBe 5
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
+    g.getFrameToPins(2) shouldBe Seq(10)
+    g.getFrameToPins(3) shouldBe Seq(10)
+    g.getFrameToPins(4) shouldBe Seq(1, 0)
+    g.getFrameToPins(5) shouldBe Seq(10, 10, 10)
 
     g.isFinished shouldBe true
 
@@ -114,22 +114,22 @@ class GameSpec extends FreeSpec with Matchers {
     Range(0, 10).indices.foreach {i  =>
       g.roll(10)
 
-      g.rollInd shouldBe i
-      g.frameInd shouldBe i
-      g.frameToPins(i) shouldBe Seq(10)
+      g.getRollInd shouldBe i
+      g.getFrameInd shouldBe i
+      g.getFrameToPins(i) shouldBe Seq(10)
       g.isFinished shouldBe false
     }
 
     g.roll(10)
-    g.rollInd shouldBe 10
-    g.frameInd shouldBe 9
-    g.frameToPins(9) shouldBe Seq(10, 10)
+    g.getRollInd shouldBe 10
+    g.getFrameInd shouldBe 9
+    g.getFrameToPins(9) shouldBe Seq(10, 10)
     g.isFinished shouldBe false
 
     g.roll(10)
-    g.rollInd shouldBe 11
-    g.frameInd shouldBe 9
-    g.frameToPins(9) shouldBe Seq(10, 10, 10)
+    g.getRollInd shouldBe 11
+    g.getFrameInd shouldBe 9
+    g.getFrameToPins(9) shouldBe Seq(10, 10, 10)
     g.isFinished shouldBe true
 
     g.score() shouldBe 300
@@ -138,32 +138,32 @@ class GameSpec extends FreeSpec with Matchers {
   "looser" in {
     val g = new Game(5)
 
-    g.rollInd shouldBe -1
-    g.frameInd shouldBe 0
-    g.frameToPins.isEmpty shouldBe true
+    g.getRollInd shouldBe -1
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins.isEmpty shouldBe true
     g.isFinished shouldBe false
 
     g.roll(0)
-    g.rollInd shouldBe 0
-    g.frameInd shouldBe 0
-    g.frameToPins(0) shouldBe Seq(0)
+    g.getRollInd shouldBe 0
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins(0) shouldBe Seq(0)
 
     g.roll(0)
-    g.rollInd shouldBe 1
-    g.frameInd shouldBe 0
-    g.frameToPins(0) shouldBe Seq(0, 0)
+    g.getRollInd shouldBe 1
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins(0) shouldBe Seq(0, 0)
 
     g.roll(0)
-    g.rollInd shouldBe 2
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(0, 0)
-    g.frameToPins(1) shouldBe Seq(0)
+    g.getRollInd shouldBe 2
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(0, 0)
+    g.getFrameToPins(1) shouldBe Seq(0)
 
     g.roll(0)
-    g.rollInd shouldBe 3
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(0, 0)
-    g.frameToPins(1) shouldBe Seq(0, 0)
+    g.getRollInd shouldBe 3
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(0, 0)
+    g.getFrameToPins(1) shouldBe Seq(0, 0)
   }
 
   "looser in loop" in {
@@ -173,20 +173,20 @@ class GameSpec extends FreeSpec with Matchers {
 
       val n = i / 2
 
-      g.rollInd shouldBe i
-      g.frameInd shouldBe n
+      g.getRollInd shouldBe i
+      g.getFrameInd shouldBe n
       if (i % 2 == 0) {
-        g.frameToPins(n) shouldBe Seq(0)
+        g.getFrameToPins(n) shouldBe Seq(0)
       } else {
-        g.frameToPins(n) shouldBe Seq(0, 0)
+        g.getFrameToPins(n) shouldBe Seq(0, 0)
       }
       g.isFinished shouldBe false
     }
 
     g.roll(0)
-    g.rollInd shouldBe 19
-    g.frameInd shouldBe 9
-    g.frameToPins(9) shouldBe Seq(0, 0)
+    g.getRollInd shouldBe 19
+    g.getFrameInd shouldBe 9
+    g.getFrameToPins(9) shouldBe Seq(0, 0)
     g.isFinished shouldBe true
 
     g.score() shouldBe 0
@@ -195,40 +195,40 @@ class GameSpec extends FreeSpec with Matchers {
   "spare at the end" in {
     val g = new Game(1)
 
-    g.rollInd shouldBe -1
-    g.frameInd shouldBe 0
-    g.frameToPins.isEmpty shouldBe true
+    g.getRollInd shouldBe -1
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins.isEmpty shouldBe true
     g.isFinished shouldBe false
 
     g.roll(3)
-    g.rollInd shouldBe 0
-    g.frameInd shouldBe 0
-    g.frameToPins(0) shouldBe Seq(3)
+    g.getRollInd shouldBe 0
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins(0) shouldBe Seq(3)
 
     g.roll(4)
-    g.rollInd shouldBe 1
-    g.frameInd shouldBe 0
-    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.getRollInd shouldBe 1
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
     //7 in frame 0
 
     g.roll(2)
-    g.rollInd shouldBe 2
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2)
+    g.getRollInd shouldBe 2
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2)
 
     g.roll(8)
-    g.rollInd shouldBe 3
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8)
+    g.getRollInd shouldBe 3
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8)
     //20 in frame 1
 
     g.roll(10)
-    g.rollInd shouldBe 4
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 8, 10)
+    g.getRollInd shouldBe 4
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 8, 10)
 
     g.isFinished shouldBe true
 
@@ -238,33 +238,33 @@ class GameSpec extends FreeSpec with Matchers {
   "fail at the end" in {
     val g = new Game(1)
 
-    g.rollInd shouldBe -1
-    g.frameInd shouldBe 0
-    g.frameToPins.isEmpty shouldBe true
+    g.getRollInd shouldBe -1
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins.isEmpty shouldBe true
     g.isFinished shouldBe false
 
     g.roll(3)
-    g.rollInd shouldBe 0
-    g.frameInd shouldBe 0
-    g.frameToPins(0) shouldBe Seq(3)
+    g.getRollInd shouldBe 0
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins(0) shouldBe Seq(3)
 
     g.roll(4)
-    g.rollInd shouldBe 1
-    g.frameInd shouldBe 0
-    g.frameToPins(0) shouldBe Seq(3, 4)
+    g.getRollInd shouldBe 1
+    g.getFrameInd shouldBe 0
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
     //7 in frame 0
 
     g.roll(2)
-    g.rollInd shouldBe 2
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2)
+    g.getRollInd shouldBe 2
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2)
 
     g.roll(7)
-    g.rollInd shouldBe 3
-    g.frameInd shouldBe 1
-    g.frameToPins(0) shouldBe Seq(3, 4)
-    g.frameToPins(1) shouldBe Seq(2, 7)
+    g.getRollInd shouldBe 3
+    g.getFrameInd shouldBe 1
+    g.getFrameToPins(0) shouldBe Seq(3, 4)
+    g.getFrameToPins(1) shouldBe Seq(2, 7)
     //9 in frame 1
 
     g.isFinished shouldBe true
