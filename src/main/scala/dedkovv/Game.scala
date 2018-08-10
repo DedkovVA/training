@@ -89,4 +89,12 @@ class Game(val lastFrameInd: Int = 9) {
   private def updateScores(pins: Int): Unit = {
     frameToScores += (frameInd -> List(pins))
   }
+
+  def roll(l: List[Score]): Score = {
+    l.foreach(roll)
+
+    assert(isFinished)
+
+    score()
+  }
 }

@@ -271,4 +271,14 @@ class GameSpec extends FreeSpec with Matchers {
 
     g.score() shouldBe 16
   }
+
+  "fail at the end via roll of list" in {
+    val g = new Game()
+    g.roll(List.fill(20)(4)) shouldBe 80
+  }
+
+  "fail at the end via roll of list 2" in {
+    val g = new Game()
+    g.roll(List.fill(21)(5)) shouldBe 150
+  }
 }
