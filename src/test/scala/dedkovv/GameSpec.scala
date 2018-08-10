@@ -20,6 +20,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.rollInd shouldBe 1
     g.frameInd shouldBe 0
     g.frameToPins(0) shouldBe Seq(3, 4)
+    //7 in frame 0
 
     g.roll(2)
     g.rollInd shouldBe 2
@@ -32,6 +33,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameInd shouldBe 1
     g.frameToPins(0) shouldBe Seq(3, 4)
     g.frameToPins(1) shouldBe Seq(2, 8)
+    //20 in frame 1
 
     g.roll(10)
     g.rollInd shouldBe 4
@@ -39,6 +41,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(0) shouldBe Seq(3, 4)
     g.frameToPins(1) shouldBe Seq(2, 8)
     g.frameToPins(2) shouldBe Seq(10)
+    //21 in frame 2
 
     g.roll(10)
     g.rollInd shouldBe 5
@@ -47,6 +50,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(1) shouldBe Seq(2, 8)
     g.frameToPins(2) shouldBe Seq(10)
     g.frameToPins(3) shouldBe Seq(10)
+    //11 in frame 3
 
     g.roll(1)
     g.rollInd shouldBe 6
@@ -65,6 +69,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(2) shouldBe Seq(10)
     g.frameToPins(3) shouldBe Seq(10)
     g.frameToPins(4) shouldBe Seq(1, 0)
+    //1 in frame 4
 
     g.roll(10)
     g.rollInd shouldBe 8
@@ -75,6 +80,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(3) shouldBe Seq(10)
     g.frameToPins(4) shouldBe Seq(1, 0)
     g.frameToPins(5) shouldBe Seq(10)
+    //30 in frame 5
 
     g.roll(10)
     g.rollInd shouldBe 9
@@ -99,6 +105,8 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(5) shouldBe Seq(10, 10, 10)
 
     g.isFinished shouldBe true
+
+    g.score() shouldBe 90
   }
 
   "max 12 tries" in {
@@ -123,6 +131,8 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameInd shouldBe 9
     g.frameToPins(9) shouldBe Seq(10, 10, 10)
     g.isFinished shouldBe true
+
+    g.score() shouldBe 300
   }
 
   "looser" in {
@@ -199,6 +209,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.rollInd shouldBe 1
     g.frameInd shouldBe 0
     g.frameToPins(0) shouldBe Seq(3, 4)
+    //7 in frame 0
 
     g.roll(2)
     g.rollInd shouldBe 2
@@ -211,6 +222,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameInd shouldBe 1
     g.frameToPins(0) shouldBe Seq(3, 4)
     g.frameToPins(1) shouldBe Seq(2, 8)
+    //20 in frame 1
 
     g.roll(10)
     g.rollInd shouldBe 4
@@ -219,6 +231,8 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameToPins(1) shouldBe Seq(2, 8, 10)
 
     g.isFinished shouldBe true
+
+    g.score() shouldBe 27
   }
 
   "fail at the end" in {
@@ -238,6 +252,7 @@ class GameSpec extends FreeSpec with Matchers {
     g.rollInd shouldBe 1
     g.frameInd shouldBe 0
     g.frameToPins(0) shouldBe Seq(3, 4)
+    //7 in frame 0
 
     g.roll(2)
     g.rollInd shouldBe 2
@@ -250,7 +265,10 @@ class GameSpec extends FreeSpec with Matchers {
     g.frameInd shouldBe 1
     g.frameToPins(0) shouldBe Seq(3, 4)
     g.frameToPins(1) shouldBe Seq(2, 7)
+    //9 in frame 1
 
     g.isFinished shouldBe true
+
+    g.score() shouldBe 16
   }
 }

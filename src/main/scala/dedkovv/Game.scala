@@ -4,6 +4,7 @@ class Game(val lastFrameInd: Int = 9) {
   type FrameInd = Int
   type Score = Int
 
+  val minPins = 0
   val maxPins = 10
   val maxNumOfTries = 2
   val maxNumOfTriesInLastFrame = 3
@@ -14,7 +15,7 @@ class Game(val lastFrameInd: Int = 9) {
   var isFinished = false
 
   def roll(pins: Int): Unit = {
-    require(pins >= 0 && pins <= 10)
+    require(pins >= minPins && pins <= maxPins)
 
     assert(!isFinished)
 
@@ -52,27 +53,27 @@ class Game(val lastFrameInd: Int = 9) {
     }
   }
 
-  private def isSpare(seq: Seq[Score]): Boolean = seq.size == maxNumOfTries && seq.sum == maxPins
-  private def isStrike(seq: Seq[Score]): Boolean = seq.size == 1 && seq.sum == maxPins
-
   def score(): Int = {
     assert(isFinished)
 
     var scoreN = 0
-    var ind = 0
+    var rollInd = 0
 
-    val tries = frameToPins.toSeq.flatMap(_._2)
+    val rolls = frameToPins.toSeq.sortBy(_._1).flatMap(_._2)
 
-    frameToPins.toSeq.sortBy(_._1).foreach { case (_, scores) =>
-      if (isStrike(scores)) {
-        scoreN += (tries(ind + 1) + tries(ind + 2) + maxPins)
-        ind += 1
-      } else if (isSpare(scores)) {
-        scoreN += (tries(ind + 2) + maxPins)
-        ind += 2
+    def isSpare(tryInd: Int): Boolean = rolls(tryInd) + rolls(tryInd + 1) == maxPins
+    def isStrike(tryInd: Int): Boolean = rolls(tryInd) == maxPins
+
+    Range(0, lastFrameInd + 1).foreach { _ =>
+      if (isStrike(rollInd)) {
+        scoreN += (rolls(rollInd + 1) + rolls(rollInd + 2) + maxPins)
+        rollInd += 1
+      } else if (isSpare(rollInd)) {
+        scoreN += (rolls(rollInd + 2) + maxPins)
+        rollInd += 2
       } else {
-        scoreN += (tries(ind) + tries(ind + 1))
-        ind += 2
+        scoreN += (rolls(rollInd) + rolls(rollInd + 1))
+        rollInd += 2
       }
     }
 
@@ -82,7 +83,4 @@ class Game(val lastFrameInd: Int = 9) {
   private def updateFrameToPins(pins: Int): Unit = {
     frameToPins += (frameInd -> List(pins))
   }
-}
-
-object Game extends App {
 }
