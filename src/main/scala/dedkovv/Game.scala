@@ -14,6 +14,14 @@ class Game(val lastFrameInd: Int = 9) {
   private var frameToScores = Map.empty[FrameInd, Seq[Score]]
   private var finished = false
 
+  def roll(l: List[Score]): Score = {
+    l.foreach(roll)
+
+    assert(isFinished)
+
+    score()
+  }
+
   def roll(pins: Int): Unit = {
     require(pins >= minPins && pins <= maxPins)
 
@@ -53,14 +61,6 @@ class Game(val lastFrameInd: Int = 9) {
     ) {
         finished = true
     }
-  }
-
-  def roll(l: List[Score]): Score = {
-    l.foreach(roll)
-
-    assert(isFinished)
-
-    score()
   }
 
   def score(): Int = {
