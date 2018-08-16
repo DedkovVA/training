@@ -44,12 +44,14 @@ class Game(val lastFrameInd: Int = 9) {
       updateScores(pins)
     }
 
-    if (frameInd == lastFrameInd) {
-      val scoresPerFrameSeq = frameToScores(frameInd)
-      if (scoresPerFrameSeq.size == maxNumOfTriesInLastFrame ||
-        scoresPerFrameSeq.size == 2 && scoresPerFrameSeq.sum < maxPins) {
+    val scoresPerFrameSeq = frameToScores(frameInd)
+    if (frameInd == lastFrameInd
+      &&
+      (scoresPerFrameSeq.size == maxNumOfTriesInLastFrame
+        ||
+      scoresPerFrameSeq.size == 2 && scoresPerFrameSeq.sum < maxPins)
+    ) {
         finished = true
-      }
     }
   }
 
